@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PowerGym - Login</title>
+  <link rel="icon" type="image/png" href="assets/logo-powergym.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container-auth">
+    <section class="left-auth">
+      <div class="left-auth-content">
+        <img src="assets/logo-powergym.png" alt="Logo PowerGym" class="logo-auth" />
+        <h1>PowerGym</h1>
+        <p>
+          Treine com força, disciplina e evolução. Encontre academias próximas,
+          acompanhe seu plano e tenha sua jornada fitness em um só lugar.
+        </p>
+      </div>
+    </section>
+
+    <section class="right-auth">
+      <div class="card-auth">
+        <h2>Entrar</h2>
+        <p>Acesse sua conta para continuar</p>
+
+        <form onsubmit="fazerLogin(event)">
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="seuemail@email.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" placeholder="Digite sua senha" required />
+          </div>
+
+          <button type="submit" class="btn">Entrar</button>
+        </form>
+
+        <div class="links-auth">
+          <a href="recuperar-senha.html">Esqueceu a senha?</a>
+          <a href="cadastro.html">Criar conta</a>
+        </div>
+
+        <div id="mensagem" class="mensagem"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

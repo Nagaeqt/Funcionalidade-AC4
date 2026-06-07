@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>PowerGym - Pagamentos</title>
+
+  <link rel="icon" type="image/png" href="assets/logo-powergym.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body onload="inicializarPagamentos()">
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="assets/logo-powergym.png" alt="Logo PowerGym" />
+        <h2>PowerGym</h2>
+      </div>
+
+      <a href="dashboard.html">Dashboard</a>
+      <a href="dashboard.html#treinos">Treinos</a>
+      <a href="dashboard.html#historico">Histórico</a>
+      <a href="dashboard.html#evolucao">Evolução</a>
+      <a href="dashboard.html#perfil">Perfil</a>
+      <a href="personal-trainer.html">Personal Trainer</a>
+      <a href="agendamentos.html">Agendamentos</a>
+      <a href="pagamentos.html" class="active-link">Pagamentos</a>
+      <button onclick="logout()">Sair</button>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <strong>Pagamento de Treino</strong>
+      </div>
+
+      <section class="hero">
+        <h1>Pagamento do treino agendado</h1>
+        <p>Selecione um agendamento, escolha a forma de pagamento e confirme o pagamento.</p>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h3>Novo Pagamento</h3>
+            <p class="section-subtitle">Registre o pagamento de um treino agendado.</p>
+          </div>
+        </div>
+
+        <form id="form-pagamento" class="form-treino">
+          <div class="grid-form">
+            <div class="form-group form-group-full">
+              <label for="agendamento_id">Agendamento</label>
+              <select id="agendamento_id" required>
+                <option value="">Selecione um agendamento</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Personal Trainer</label>
+              <input type="text" id="pagamento_personal" readonly placeholder="Personal selecionado" />
+            </div>
+
+            <div class="form-group">
+              <label>Data do treino</label>
+              <input type="text" id="pagamento_data" readonly placeholder="Data do treino" />
+            </div>
+
+            <div class="form-group">
+              <label>Horário</label>
+              <input type="text" id="pagamento_horario" readonly placeholder="Horário do treino" />
+            </div>
+
+            <div class="form-group">
+              <label>Valor total</label>
+              <input type="text" id="pagamento_valor" readonly placeholder="R$ 0,00" />
+            </div>
+
+            <div class="form-group form-group-full">
+              <label for="forma_pagamento">Forma de pagamento</label>
+              <select id="forma_pagamento" required>
+                <option value="">Selecione</option>
+                <option value="PIX">PIX</option>
+                <option value="Cartão de Crédito">Cartão de Crédito</option>
+                <option value="Cartão de Débito">Cartão de Débito</option>
+                <option value="Dinheiro">Dinheiro</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="acoes-formulario">
+            <button type="submit" class="btn btn-treino">Confirmar Pagamento</button>
+          </div>
+
+          <p id="mensagem-pagamento" class="info-session"></p>
+        </form>
+      </section>
+
+      <section class="section" style="margin-top: 20px;">
+        <div class="section-header">
+          <div>
+            <h3>Pagamentos realizados</h3>
+            <p class="section-subtitle">Visualize os pagamentos registrados.</p>
+          </div>
+        </div>
+
+        <div id="lista-pagamentos">
+          <p class="info-session">Nenhum pagamento registrado.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/pagamentos.js"></script>
+</body>
+</html>

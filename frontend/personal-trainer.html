@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PowerGym - Personal Trainer</title>
+  <link rel="icon" type="image/png" href="assets/logo-powergym.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body onload="inicializarPersonalTrainer()">
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="assets/logo-powergym.png" alt="Logo PowerGym" />
+        <h2>PowerGym</h2>
+      </div>
+
+      <a href="dashboard.html#dashboard">Dashboard</a>
+      <a href="dashboard.html#treinos">Treinos</a>
+      <a href="dashboard.html#historico">Histórico</a>
+      <a href="dashboard.html#evolucao">Evolução</a>
+      <a href="dashboard.html#perfil">Perfil</a>
+      <a href="personal-trainer.html" class="active-link">Personal Trainer</a>
+      <a href="agendamentos.html">Agendamentos</a>
+      <a href="pagamentos.html">Pagamentos</a>
+      <a href="dashboard.html#sessao">Sessão</a>
+      <button onclick="logout()">Sair</button>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <strong>Área de Personal Trainer</strong>
+      </div>
+
+      <section class="hero">
+        <h1>Encontre ou cadastre um Personal Trainer</h1>
+        <p>Cadastre profissionais, visualize especializações e consulte os dados de contato com controle administrativo para exclusão.</p>
+      </section>
+
+      <section class="section" id="cadastro-personal">
+        <div class="section-header">
+          <div>
+            <h3>Cadastro de Personal Trainer</h3>
+            <p class="section-subtitle">Preencha os dados do profissional abaixo.</p>
+          </div>
+        </div>
+
+        <form id="form-personal-trainer" class="form-treino" enctype="multipart/form-data">
+          <div class="grid-form">
+            <div class="form-group">
+              <label for="personal_nome">Nome</label>
+              <input type="text" id="personal_nome" placeholder="Ex.: Carlos Henrique" required />
+            </div>
+
+            <div class="form-group">
+              <label for="personal_especializacao">Especialização</label>
+              <input type="text" id="personal_especializacao" placeholder="Ex.: Hipertrofia e emagrecimento" required />
+            </div>
+
+            <div class="form-group">
+              <label for="personal_valor_aula">Valor da aula (R$)</label>
+              <input type="number" id="personal_valor_aula" step="0.01" min="0" placeholder="Ex.: 80.00" required />
+            </div>
+
+            <div class="form-group">
+              <label for="personal_telefone">Telefone</label>
+              <input type="text" id="personal_telefone" placeholder="Ex.: (11) 99999-9999" required />
+            </div>
+
+            <div class="form-group">
+              <label for="personal_localizacao">Localização de atendimento</label>
+              <input type="text" id="personal_localizacao" placeholder="Ex.: São Paulo - Zona Leste" required />
+            </div>
+
+            <div class="form-group form-group-full">
+              <label for="personal_foto">Foto do personal</label>
+              <input type="file" id="personal_foto" accept="image/*" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="personal_descricao">Descrição</label>
+            <textarea id="personal_descricao" rows="4" placeholder="Resumo da experiência, formação e especialidade do personal trainer" required></textarea>
+          </div>
+
+          <div class="acoes-formulario">
+            <button type="submit" class="btn btn-treino">Cadastrar personal</button>
+            <button type="button" class="btn btn-cancelar" onclick="limparFormularioPersonalTrainer()">Limpar</button>
+          </div>
+
+          <p id="mensagem-personal" class="info-session"></p>
+        </form>
+      </section>
+
+      <section class="section" id="visualizacao-personais" style="margin-top: 20px;">
+        <div class="section-header section-header-admin">
+          <div>
+            <h3>Personal Trainers cadastrados</h3>
+            <p class="section-subtitle">Visualize os profissionais disponíveis.</p>
+          </div>
+
+          <div class="admin-painel">
+            <button type="button" id="btn-admin" class="btn-admin" onclick="autenticarAdmin()" title="Acesso administrativo">
+              ⚙
+            </button>
+
+            <button type="button" id="btn-sair-admin" class="btn-sair-admin hidden" onclick="sairModoAdmin()">
+              Sair do modo admin
+            </button>
+          </div>
+        </div>
+
+        <div id="status-admin" class="status-admin">
+          Modo administrador desativado.
+        </div>
+
+        <div id="lista-personais" class="lista-personais">
+          <p class="info-session">Nenhum personal trainer cadastrado ainda.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/personal-trainer.js"></script>
+</body>
+</html>

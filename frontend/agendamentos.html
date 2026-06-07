@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>PowerGym - Agendamentos</title>
+
+  <link rel="icon" type="image/png" href="assets/logo-powergym.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body onload="inicializarAgendamentos()">
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="assets/logo-powergym.png" alt="Logo PowerGym" />
+        <h2>PowerGym</h2>
+      </div>
+
+      <a href="dashboard.html">Dashboard</a>
+      <a href="dashboard.html#treinos">Treinos</a>
+      <a href="dashboard.html#historico">Histórico</a>
+      <a href="dashboard.html#evolucao">Evolução</a>
+      <a href="dashboard.html#perfil">Perfil</a>
+      <a href="personal-trainer.html">Personal Trainer</a>
+      <a href="agendamentos.html" class="active-link">Agendamentos</a>
+      <a href="pagamentos.html">Pagamentos</a>
+      <button onclick="logout()">Sair</button>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <strong>Agendamento de Treino</strong>
+      </div>
+
+      <section class="hero">
+        <h1>Agende seu treino com um personal</h1>
+        <p>Escolha a data, horário e quantidade de aulas do treino selecionado.</p>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h3>Novo Agendamento</h3>
+            <p class="section-subtitle">Confirme os dados do treino personalizado.</p>
+          </div>
+        </div>
+
+        <form id="form-agendamento" class="form-treino">
+          <div class="grid-form">
+            <div class="form-group">
+              <label for="personal_id">Personal Trainer</label>
+              <select id="personal_id" required>
+                <option value="">Selecione um personal</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="data_agendamento">Data do treino</label>
+              <input type="date" id="data_agendamento" required />
+            </div>
+
+            <div class="form-group">
+              <label for="horario_inicio">Horário inicial</label>
+              <input type="time" id="horario_inicio" required />
+            </div>
+
+            <div class="form-group">
+              <label for="quantidade_aulas">Quantidade de aulas</label>
+              <input type="number" id="quantidade_aulas" min="1" value="1" required />
+            </div>
+
+            <div class="form-group">
+              <label>Valor por aula</label>
+              <input type="text" id="valor_unitario" readonly placeholder="R$ 0,00" />
+            </div>
+
+            <div class="form-group">
+              <label>Valor total</label>
+              <input type="text" id="valor_total" readonly placeholder="R$ 0,00" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="observacoes_agendamento">Observações</label>
+            <textarea
+              id="observacoes_agendamento"
+              rows="4"
+              placeholder="Observações sobre o treino"
+            ></textarea>
+          </div>
+
+          <div class="acoes-formulario">
+            <button type="submit" class="btn btn-treino">Confirmar Agendamento</button>
+          </div>
+
+          <p id="mensagem-agendamento" class="info-session"></p>
+        </form>
+      </section>
+
+      <section class="section" style="margin-top: 20px;">
+        <div class="section-header">
+          <div>
+            <h3>Agendamentos realizados</h3>
+            <p class="section-subtitle">Visualize seus treinos agendados.</p>
+          </div>
+        </div>
+
+        <div id="lista-agendamentos">
+          <p class="info-session">Nenhum agendamento realizado.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/agendamentos.js"></script>
+</body>
+</html>

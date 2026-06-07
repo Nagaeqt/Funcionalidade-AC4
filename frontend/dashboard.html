@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PowerGym - Dashboard</title>
+  <link rel="icon" type="image/png" href="assets/logo-powergym.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body onload="inicializarDashboard()">
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="assets/logo-powergym.png" alt="Logo PowerGym" />
+        <h2>PowerGym</h2>
+      </div>
+
+      <a href="#dashboard">Dashboard</a>
+      <a href="#treinos">Treinos</a>
+      <a href="#historico">Histórico</a>
+      <a href="#evolucao">Evolução</a>
+      <a href="#perfil">Perfil</a>
+
+      <a href="personal-trainer.html">Personal Trainer</a>
+      <a href="agendamentos.html">Agendamentos</a>
+      <a href="pagamentos.html">Pagamentos</a>
+
+      <a href="#sessao">Sessão</a>
+      <button onclick="logout()">Sair</button>
+    </aside>
+
+    <main class="main">
+      <div class="topbar" id="dashboard">
+        <strong>Bem-vindo, <span id="nome-usuario">Usuário</span></strong>
+      </div>
+
+      <section class="hero">
+        <h1>Seu desempenho começa aqui</h1>
+        <p>Cadastre treinos, acompanhe evolução de carga, filtre o histórico e mantenha seu perfil atualizado.</p>
+      </section>
+
+      <section class="cards">
+        <div class="card-info">
+          <h3>Total de treinos</h3>
+          <p id="total-treinos">0 treino(s)</p>
+        </div>
+
+        <div class="card-info">
+          <h3>Último treino</h3>
+          <p id="ultimo-treino">Nenhum</p>
+        </div>
+
+        <div class="card-info">
+          <h3>Foco mais frequente</h3>
+          <p id="foco-atual">-</p>
+        </div>
+
+        <div class="card-info">
+          <h3>Exercício mais usado</h3>
+          <p id="exercicio-frequente">-</p>
+        </div>
+      </section>
+
+      <section class="section" id="treinos">
+        <div class="section-header">
+          <div>
+            <h3>Cadastro de treino do dia</h3>
+            <p class="section-subtitle">Registre, edite e acompanhe sua rotina.</p>
+          </div>
+          <span class="badge-status" id="status-edicao">Modo cadastro</span>
+        </div>
+
+        <form id="form-treino" class="form-treino">
+          <div class="grid-form">
+            <div class="form-group">
+              <label for="data_treino">Data do treino</label>
+              <input type="date" id="data_treino" required />
+            </div>
+
+            <div class="form-group">
+              <label for="dia_da_semana">Dia da semana</label>
+              <select id="dia_da_semana" required>
+                <option value="">Selecione</option>
+                <option value="Segunda-feira">Segunda-feira</option>
+                <option value="Terça-feira">Terça-feira</option>
+                <option value="Quarta-feira">Quarta-feira</option>
+                <option value="Quinta-feira">Quinta-feira</option>
+                <option value="Sexta-feira">Sexta-feira</option>
+                <option value="Sábado">Sábado</option>
+                <option value="Domingo">Domingo</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="tipo_de_treino">Tipo de treino</label>
+              <input type="text" id="tipo_de_treino" placeholder="Ex.: Peito, Perna, Costas" required />
+            </div>
+
+            <div class="form-group">
+              <label for="foco_do_treino">Foco do treino</label>
+              <select id="foco_do_treino" required>
+                <option value="">Selecione</option>
+                <option value="Hipertrofia">Hipertrofia</option>
+                <option value="Resistência">Resistência</option>
+                <option value="Emagrecimento">Emagrecimento</option>
+                <option value="Condicionamento">Condicionamento</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="exercicio">Exercício</label>
+              <input type="text" id="exercicio" placeholder="Ex.: Supino reto" required />
+            </div>
+
+            <div class="form-group">
+              <label for="carga">Carga (kg)</label>
+              <input type="number" id="carga" step="0.01" min="0" placeholder="Ex.: 60" />
+            </div>
+
+            <div class="form-group">
+              <label for="series">Séries</label>
+              <input type="number" id="series" min="1" placeholder="Ex.: 4" />
+            </div>
+
+            <div class="form-group">
+              <label for="repeticoes">Repetições</label>
+              <input type="number" id="repeticoes" min="1" placeholder="Ex.: 12" />
+            </div>
+
+            <div class="form-group">
+              <label for="tempo_descanso">Tempo de descanso (s)</label>
+              <input type="number" id="tempo_descanso" min="0" placeholder="Ex.: 60" />
+            </div>
+
+            <div class="form-group">
+              <label for="peso_corporal">Peso corporal (kg)</label>
+              <input type="number" id="peso_corporal" step="0.01" min="0" placeholder="Ex.: 78.5" />
+            </div>
+
+            <div class="form-group">
+              <label for="altura">Altura (cm)</label>
+              <input type="number" id="altura" step="0.01" min="0" placeholder="Ex.: 174" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="observacoes">Observações</label>
+            <textarea id="observacoes" rows="4" placeholder="Observações sobre o treino"></textarea>
+          </div>
+
+          <div class="acoes-formulario">
+            <button type="submit" class="btn btn-treino">Salvar treino</button>
+            <button type="button" class="btn btn-cancelar" onclick="limparFormularioTreino()">Cancelar edição</button>
+          </div>
+
+          <p id="mensagem-treino" class="info-session"></p>
+        </form>
+      </section>
+
+      <section class="section" id="historico" style="margin-top: 20px;">
+        <div class="section-header">
+          <div>
+            <h3>Histórico de treinos</h3>
+            <p class="section-subtitle">Pesquise e filtre seus registros.</p>
+          </div>
+        </div>
+
+        <div class="filtros-grid">
+          <div class="form-group">
+            <label for="busca-treino">Buscar</label>
+            <input type="text" id="busca-treino" placeholder="Digite exercício, foco ou observação" />
+          </div>
+
+          <div class="form-group">
+            <label for="filtro-dia">Filtrar por dia</label>
+            <select id="filtro-dia">
+              <option value="">Todos</option>
+              <option value="Segunda-feira">Segunda-feira</option>
+              <option value="Terça-feira">Terça-feira</option>
+              <option value="Quarta-feira">Quarta-feira</option>
+              <option value="Quinta-feira">Quinta-feira</option>
+              <option value="Sexta-feira">Sexta-feira</option>
+              <option value="Sábado">Sábado</option>
+              <option value="Domingo">Domingo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="filtro-foco">Filtrar por foco</label>
+            <select id="filtro-foco">
+              <option value="">Todos</option>
+              <option value="Hipertrofia">Hipertrofia</option>
+              <option value="Resistência">Resistência</option>
+              <option value="Emagrecimento">Emagrecimento</option>
+              <option value="Condicionamento">Condicionamento</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="lista-treinos" class="lista-treinos">
+          <p class="info-session">Nenhum treino cadastrado ainda.</p>
+        </div>
+      </section>
+
+      <section class="section" id="evolucao" style="margin-top: 20px;">
+        <div class="section-header">
+          <div>
+            <h3>Evolução de carga</h3>
+            <p class="section-subtitle">Visualização simples das últimas cargas cadastradas.</p>
+          </div>
+        </div>
+
+        <div id="grafico-carga" class="grafico-carga"></div>
+        <p id="grafico-vazio" class="info-session">Cadastre treinos com carga para visualizar a evolução.</p>
+      </section>
+
+      <section class="section" id="perfil" style="margin-top: 20px;">
+        <div class="section-header">
+          <div>
+            <h3>Perfil do usuário</h3>
+            <p class="section-subtitle">Atualize seus dados pessoais.</p>
+          </div>
+        </div>
+
+        <form id="form-perfil" class="form-treino">
+          <div class="grid-form">
+            <div class="form-group">
+              <label for="perfil-nome">Nome</label>
+              <input type="text" id="perfil-nome" required />
+            </div>
+
+            <div class="form-group">
+              <label for="perfil-email">E-mail</label>
+              <input type="email" id="perfil-email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="perfil-objetivo">Objetivo</label>
+              <select id="perfil-objetivo">
+                <option value="">Selecione</option>
+                <option value="Hipertrofia">Hipertrofia</option>
+                <option value="Resistência">Resistência</option>
+                <option value="Emagrecimento">Emagrecimento</option>
+                <option value="Condicionamento">Condicionamento</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="perfil-peso">Peso corporal (kg)</label>
+              <input type="number" id="perfil-peso" step="0.01" min="0" />
+            </div>
+
+            <div class="form-group">
+              <label for="perfil-altura">Altura (cm)</label>
+              <input type="number" id="perfil-altura" step="0.01" min="0" />
+            </div>
+          </div>
+
+          <div class="acoes-formulario">
+            <button type="submit" class="btn">Salvar perfil</button>
+          </div>
+
+          <p id="mensagem-perfil" class="info-session"></p>
+        </form>
+      </section>
+
+      <section class="section" id="sessao" style="margin-top: 20px;">
+        <h3>Dados da sessão</h3>
+        <p id="mensagem" class="info-session"></p>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal-exclusao" class="modal-overlay hidden">
+    <div class="modal-card">
+      <h3>Excluir treino</h3>
+      <p>Tem certeza que deseja excluir este treino? Essa ação não poderá ser desfeita.</p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-cancelar" id="btn-cancelar-exclusao">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="btn-confirmar-exclusao">Excluir treino</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/trainings.js"></script>
+</body>
+</html>

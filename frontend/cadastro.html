@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PowerGym - Cadastro</title>
+  <link rel="icon" type="image/png" href="assets/logo-powergym.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container-auth">
+    <section class="left-auth">
+      <div class="left-auth-content">
+        <img src="assets/logo-powergym.png" alt="Logo PowerGym" class="logo-auth" />
+        <h1>Nova Conta</h1>
+        <p>
+          Crie seu acesso e comece a organizar treinos, metas e academias favoritas.
+        </p>
+      </div>
+    </section>
+
+    <section class="right-auth">
+      <div class="card-auth">
+        <h2>Cadastrar</h2>
+        <p>Preencha os dados abaixo</p>
+
+        <form onsubmit="fazerCadastro(event)">
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" required />
+          </div>
+
+          <div class="form-group">
+            <label for="objetivo">Objetivo</label>
+            <select id="objetivo">
+              <option value="">Selecione</option>
+              <option value="hipertrofia">Hipertrofia</option>
+              <option value="emagrecimento">Emagrecimento</option>
+              <option value="condicionamento">Condicionamento</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="plano_id">Plano</label>
+            <input type="number" id="plano_id" placeholder="Ex.: 1" />
+          </div>
+
+          <button type="submit" class="btn">Criar conta</button>
+        </form>
+
+        <div class="links-auth">
+          <a href="index.html">Voltar ao login</a>
+        </div>
+
+        <div id="mensagem" class="mensagem"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
